@@ -52,13 +52,7 @@ namespace BTC_CZK
 
         private async void tabPage2_Enter(object sender, EventArgs e)
         {
-            btcRates = await dbHelper.GetDisplayValues();
-            dataGridView2.Rows.Clear();
-
-            foreach (var value in btcRates)
-            {
-                dataGridView2.Rows.Add(value.GridViewValues());
-            }
+            UpdateValues();
         }
 
         private async void btn_delete_Click(object sender, EventArgs e)
@@ -69,31 +63,19 @@ namespace BTC_CZK
             {
                 DataGridViewRow row = (DataGridViewRow)item;
                 var val = int.Parse((string)row.Cells[0].Value);
-
                 ids.Add(val);
             }
 
             List<BitcoinRate> ratesToDelete = new List<BitcoinRate>();
-
             foreach (var id in ids)
             {
                 var founded = btcRates.FirstOrDefault(p => p.ID == id);
                 ratesToDelete.Add(founded);
             }
-
             await dbHelper.DeleteValues(ratesToDelete);
 
-
-            btcRates = await dbHelper.GetDisplayValues();
-            dataGridView2.Rows.Clear();
-
-            foreach (var value in btcRates)
-            {
-                dataGridView2.Rows.Add(value.GridViewValues());
-            }
-
-
-        }
+            UpdateValues();
+        }        
 
         private async void btn_update_Click(object sender, EventArgs e)
         {
@@ -106,29 +88,35 @@ namespace BTC_CZK
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var modifiedRow = dataGridView2.Rows[e.RowIndex];
-
             DataGridViewRow row = (DataGridViewRow)modifiedRow;
-            var ID = int.Parse((string)row.Cells[0].Value);
+            var id = int.Parse((string)row.Cells[0].Value);
             var note = (string)row.Cells[6].Value;
 
-            var modifiedRate = btcRates.FirstOrDefault(p => p.ID == ID);
+            var foundedRate = modifiedRates.FirstOrDefault(p => p.ID == id);
 
-            var foundedRate = modifiedRates.FirstOrDefault(p => p.ID == ID);
-
-            if (foundedRate!= null)
+            if (foundedRate != null)
             {
                 foundedRate.Note = note;
-
             }
             else
             {
+                var modifiedRate = btcRates.FirstOrDefault(p => p.ID == id);
                 modifiedRate.Note = note;
                 modifiedRates.Add(modifiedRate);
+            }            
+        }
+
+        //
+
+        private async void UpdateValues()
+        {
+            btcRates = await dbHelper.GetDisplayValues();
+            dataGridView2.Rows.Clear();
+
+            foreach (var value in btcRates)
+            {
+                dataGridView2.Rows.Add(value.GridViewValues());
             }
-
-
-
-            string s = "aaa";
         }
     }
 }
