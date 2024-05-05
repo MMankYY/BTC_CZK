@@ -2,14 +2,21 @@
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 
 namespace BussinesLogic.DBContext
 {
 
     public class BitcoinDbContext : DbContext
     {
+        private readonly IConfiguration _configuration;
+
         public BitcoinDbContext()
         {
+            _configuration = new ConfigurationBuilder()
+                            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                            .Build();
         }
 
         public BitcoinDbContext(DbContextOptions<BitcoinDbContext> options)
@@ -19,14 +26,14 @@ namespace BussinesLogic.DBContext
 
         public DbSet<BitcoinRate> BitcoinRates { get; set; }
 
-       
-        
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
             if (!optionsBuilder.IsConfigured)
             {
-                // TODO relocate connectionstring
-                optionsBuilder.UseSqlServer("Server=MANKY;Database=Bitcoin;User Id=BitcoinUser;Password=BitcoinUser;Trust Server Certificate=True;");
+                string connectionString = _configuration.GetSection("DefaultDB").Value;
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
