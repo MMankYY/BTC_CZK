@@ -36,7 +36,6 @@ namespace BussinesLogic.Helpers
 
         private static DateTime GetDateFromBtcData(BitcoinData bitcoinData)
         {
-            // TODO osetrit
             return DateTime.Parse(bitcoinData.time.updatedISO);
         }
 

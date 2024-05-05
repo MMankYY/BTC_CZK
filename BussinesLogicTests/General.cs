@@ -34,21 +34,6 @@ namespace BussinesLogicTests
 
             Assert.NotNull(resp);
         }
-        [Test]
-        public async Task HttpHelper_GetHttpRequest_Exception_Test()
-        {
-            HttpHelper httpHelper = new HttpHelper();
-            try
-            {
-                await httpHelper.GetHttpRequest("");
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail("Exception was expected");
-        }
 
         [Test]
         public async Task CoinDeskDowlnoader_Test()

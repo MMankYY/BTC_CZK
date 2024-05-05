@@ -196,7 +196,6 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Database Values";
             tabPage2.UseVisualStyleBackColor = true;
-            tabPage2.Click += tabPage2_Click;
             tabPage2.Enter += tabPage2_Enter;
             // 
             // tableLayoutPanel2

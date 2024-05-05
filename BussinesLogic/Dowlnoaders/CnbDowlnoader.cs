@@ -23,17 +23,9 @@ namespace BussinesLogic.Dowlnoaders
 
         public async Task<CnbResp> ReadCnbData()
         {
-            try
-            {
-                string resp = await _httpHelper.GetHttpRequest(Constants.Constants.CNBADDRESS);
-                CnbResp cnbData = ParseCnbResp(resp);
-                return cnbData;
-            }
-            catch (Exception)
-            {
-                // TODO
-                throw;
-            }
+            string resp = await _httpHelper.GetHttpRequest(Constants.Constants.CNBADDRESS);
+            CnbResp cnbData = ParseCnbResp(resp);
+            return cnbData;
         }
 
         private CnbResp ParseCnbResp(string resp)
@@ -45,7 +37,6 @@ namespace BussinesLogic.Dowlnoaders
             string[] lines = resp.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             string[] firstLine = lines[0].Split(" ");
 
-            //TODO Este osetrit datetimeParse
             cnbResp.ValidDate = DateTime.Parse(firstLine[0]);
 
             for (int i = 2; i < lines.Length; i++)

@@ -21,17 +21,9 @@ namespace BussinesLogic.Dowlnoaders
 
         public async Task<BitcoinData> ReadCoindeskData()
         {
-            try
-            {
-                string resp = await _httpHelper.GetHttpRequest(Constants.Constants.COINDESKADDRESS);
-                BitcoinData bitcoinData = JsonSerializer.Deserialize<BitcoinData>(resp);
-                return bitcoinData;
-            }
-            catch (Exception)
-            {
-                // TODO
-                throw;
-            }
+            string resp = await _httpHelper.GetHttpRequest(Constants.Constants.COINDESKADDRESS);
+            BitcoinData bitcoinData = JsonSerializer.Deserialize<BitcoinData>(resp);
+            return bitcoinData;
         }
     }
 }
