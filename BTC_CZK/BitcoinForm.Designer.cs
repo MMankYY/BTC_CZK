@@ -33,7 +33,7 @@
             tabPage1 = new TabPage();
             tableLayoutPanel1 = new TableLayoutPanel();
             TriggerTimerInterval = new NumericUpDown();
-            button2 = new Button();
+            btn_save = new Button();
             dataGridView1 = new DataGridView();
             BtcEur = new DataGridViewTextBoxColumn();
             EurCzk = new DataGridViewTextBoxColumn();
@@ -49,9 +49,8 @@
             CreateDate = new DataGridViewTextBoxColumn();
             DownloadedDate = new DataGridViewTextBoxColumn();
             Note = new DataGridViewTextBoxColumn();
-            button1 = new Button();
-            button3 = new Button();
-            PeriodicTrigger = new System.ComponentModel.BackgroundWorker();
+            btn_delete = new Button();
+            btn_update = new Button();
             TriggerTimer = new System.Windows.Forms.Timer(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -82,7 +81,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(1516, 898);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
+            tabPage1.Text = "Actual Values";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -95,7 +94,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
             tableLayoutPanel1.Controls.Add(TriggerTimerInterval, 3, 1);
-            tableLayoutPanel1.Controls.Add(button2, 3, 5);
+            tableLayoutPanel1.Controls.Add(btn_save, 3, 5);
             tableLayoutPanel1.Controls.Add(dataGridView1, 2, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(3, 3);
@@ -122,16 +121,16 @@
             TriggerTimerInterval.Value = new decimal(new int[] { 1, 0, 0, 0 });
             TriggerTimerInterval.ValueChanged += TriggerTimerInterval_ValueChanged;
             // 
-            // button2
+            // btn_save
             // 
-            button2.Dock = DockStyle.Fill;
-            button2.Location = new Point(1353, 815);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 54);
-            button2.TabIndex = 2;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btn_save.Dock = DockStyle.Fill;
+            btn_save.Location = new Point(1353, 815);
+            btn_save.Name = "btn_save";
+            btn_save.Size = new Size(94, 54);
+            btn_save.TabIndex = 2;
+            btn_save.Text = "Save";
+            btn_save.UseVisualStyleBackColor = true;
+            btn_save.Click += btn_save_Click;
             // 
             // dataGridView1
             // 
@@ -189,7 +188,7 @@
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1516, 898);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Database Values";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
             tabPage2.Enter += tabPage2_Enter;
@@ -203,8 +202,8 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Controls.Add(dataGridView2, 1, 1);
-            tableLayoutPanel2.Controls.Add(button1, 3, 2);
-            tableLayoutPanel2.Controls.Add(button3, 3, 4);
+            tableLayoutPanel2.Controls.Add(btn_delete, 3, 2);
+            tableLayoutPanel2.Controls.Add(btn_update, 3, 4);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -295,27 +294,27 @@
             Note.MinimumWidth = 8;
             Note.Name = "Note";
             // 
-            // button1
+            // btn_delete
             // 
-            button1.Dock = DockStyle.Fill;
-            button1.Location = new Point(1343, 705);
-            button1.Name = "button1";
-            button1.Size = new Size(144, 54);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btn_delete.Dock = DockStyle.Fill;
+            btn_delete.Location = new Point(1343, 705);
+            btn_delete.Name = "btn_delete";
+            btn_delete.Size = new Size(144, 54);
+            btn_delete.TabIndex = 1;
+            btn_delete.Text = "Delete";
+            btn_delete.UseVisualStyleBackColor = true;
+            btn_delete.Click += btn_delete_Click;
             // 
-            // button3
+            // btn_update
             // 
-            button3.Dock = DockStyle.Fill;
-            button3.Location = new Point(1343, 815);
-            button3.Name = "button3";
-            button3.Size = new Size(144, 54);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            btn_update.Dock = DockStyle.Fill;
+            btn_update.Location = new Point(1343, 815);
+            btn_update.Name = "btn_update";
+            btn_update.Size = new Size(144, 54);
+            btn_update.TabIndex = 2;
+            btn_update.Text = "Update";
+            btn_update.UseVisualStyleBackColor = true;
+            btn_update.Click += btn_update_Click;
             // 
             // TriggerTimer
             // 
@@ -348,18 +347,17 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TabPage tabPage2;
         private NumericUpDown TriggerTimerInterval;
-        private Button button2;
+        private Button btn_save;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn BtcEur;
         private DataGridViewTextBoxColumn EurCzk;
         private DataGridViewTextBoxColumn BtcCzk;
         private DataGridViewTextBoxColumn ValidAt;
-        private System.ComponentModel.BackgroundWorker PeriodicTrigger;
         private System.Windows.Forms.Timer TriggerTimer;
         private TableLayoutPanel tableLayoutPanel2;
         private DataGridView dataGridView2;
-        private Button button1;
-        private Button button3;
+        private Button btn_delete;
+        private Button btn_update;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn BTC_EUR;
         private DataGridViewTextBoxColumn CZK_EUR;

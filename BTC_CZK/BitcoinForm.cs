@@ -33,7 +33,7 @@ namespace BTC_CZK
             readedValues.Add(displayvalues);
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             await dbHelper.SaveDisplayValues(readedValues);
             readedValues.Clear();
@@ -61,7 +61,7 @@ namespace BTC_CZK
             }
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void btn_delete_Click(object sender, EventArgs e)
         {
             List<int> ids = new List<int>();
 
@@ -95,7 +95,7 @@ namespace BTC_CZK
 
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+        private async void btn_update_Click(object sender, EventArgs e)
         {
             await dbHelper.UpdateValues(modifiedRates);
 

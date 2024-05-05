@@ -12,7 +12,7 @@ namespace BussinesLogic.Objects
         public int? ID { get; set; }
         public decimal BTC_EUR { get; set; }
         public decimal CZK_EUR { get; set; }
-        public decimal BTV_CZK { get; set; }
+        public decimal BTC_CZK { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime DownloadedDate { get; set; }
         public string? Note { get; set; }
@@ -24,7 +24,7 @@ namespace BussinesLogic.Objects
                 ID.ToString(),
                 BTC_EUR.ToString(),
                 CZK_EUR.ToString(),
-                BTV_CZK.ToString(),
+                BTC_CZK.ToString(),
                 CreateDate.ToString(),
                 DownloadedDate.ToString(),
                 Note ?? string.Empty 

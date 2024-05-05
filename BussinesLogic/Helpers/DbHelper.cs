@@ -27,7 +27,7 @@ namespace BussinesLogic.Helpers
                 BitcoinRate bitcoinRate = new BitcoinRate();
                 bitcoinRate.BTC_EUR = item.BtcEur;
                 bitcoinRate.CZK_EUR = item.EurCzk;
-                bitcoinRate.BTV_CZK = item.BtcCzk;
+                bitcoinRate.BTC_CZK = item.BtcCzk;
                 bitcoinRate.DownloadedDate = item.ValidAt;
                 bitcoinRate.CreateDate = DateTime.Now;
                 rates.Add(bitcoinRate);

@@ -6,8 +6,6 @@ using System;
 namespace BussinesLogic.DBContext
 {
 
-
-
     public class BitcoinDbContext : DbContext
     {
         public BitcoinDbContext()
@@ -27,6 +25,7 @@ namespace BussinesLogic.DBContext
         { 
             if (!optionsBuilder.IsConfigured)
             {
+                // TODO relocate connectionstring
                 optionsBuilder.UseSqlServer("Server=MANKY;Database=Bitcoin;User Id=BitcoinUser;Password=BitcoinUser;Trust Server Certificate=True;");
             }
         }
@@ -45,7 +44,7 @@ namespace BussinesLogic.DBContext
 
                 entity.Property(e => e.CZK_EUR).HasColumnName("CZK_EUR").HasColumnType("decimal(18, 3)").IsRequired();
 
-                entity.Property(e => e.BTV_CZK).HasColumnName("BTV_CZK").HasColumnType("decimal(18, 3)").IsRequired();
+                entity.Property(e => e.BTC_CZK).HasColumnName("BTC_CZK").HasColumnType("decimal(18, 3)").IsRequired();
 
                 entity.Property(e => e.CreateDate).HasColumnName("CreateDate").HasColumnType("datetime").IsRequired();
 
