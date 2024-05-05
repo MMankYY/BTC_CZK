@@ -1,7 +1,9 @@
 using BussinesLogic.Dowlnoaders;
 using BussinesLogic.Helpers;
 using BussinesLogic.Objects;
-using System.Data;
+using OxyPlot.Series;
+using OxyPlot;
+using OxyPlot.Axes;
 
 namespace BTC_CZK
 {
@@ -31,6 +33,7 @@ namespace BTC_CZK
             dataGridView1.Rows.Add(displayvalues.GridViewValues());
 
             readedValues.Add(displayvalues);
+            DrawGraph();
         }
 
         private async void btn_save_Click(object sender, EventArgs e)
@@ -75,7 +78,7 @@ namespace BTC_CZK
             await dbHelper.DeleteValues(ratesToDelete);
 
             UpdateValues();
-        }        
+        }
 
         private async void btn_update_Click(object sender, EventArgs e)
         {
@@ -103,7 +106,7 @@ namespace BTC_CZK
                 var modifiedRate = btcRates.FirstOrDefault(p => p.ID == id);
                 modifiedRate.Note = note;
                 modifiedRates.Add(modifiedRate);
-            }            
+            }
         }
 
         //
@@ -117,6 +120,26 @@ namespace BTC_CZK
             {
                 dataGridView2.Rows.Add(value.GridViewValues());
             }
+        }
+
+        private void DrawGraph()
+        {
+            var model = new PlotModel { Title = "BTC_CZK in Time" };
+            var scatterSeries = new LineSeries { MarkerType = MarkerType.Circle };
+
+            foreach (var item in readedValues)
+            {
+                var y = (double)item.BtcCzk / 1000000;
+                var x = item.ValidAt.Ticks;
+                scatterSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(item.ValidAt), y));
+            }
+
+            model.Series.Add(scatterSeries);
+            //model.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom,Title = "Time", Minimum = DateTimeAxis.ToDouble(DateTime.Now), Maximum = DateTimeAxis.ToDouble(DateTime.Now.AddHours(12)), StringFormat ="hh:mm:ss" });
+            model.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Title = "Time", StringFormat = "hh:mm:ss" });
+            model.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Title = "BTC_CZK * 1 000 000" });
+
+            plotView1.Model = model;
         }
     }
 }

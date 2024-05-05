@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Globalization;
 
 namespace BussinesLogic.Dowlnoaders
 {
@@ -56,7 +57,7 @@ namespace BussinesLogic.Dowlnoaders
                     Currency = row[1],
                     Quantity = int.Parse(row[2]),
                     Code = row[3],
-                    Rate = decimal.Parse(row[4])
+                    Rate = decimal.Parse(row[4], CultureInfo.GetCultureInfo("cs-cz"))
                 };
                 cnbResp.ActValues.Add(actValues);
             }

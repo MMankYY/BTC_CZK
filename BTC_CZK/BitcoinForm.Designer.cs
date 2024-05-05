@@ -51,6 +51,9 @@
             Note = new DataGridViewTextBoxColumn();
             btn_delete = new Button();
             btn_update = new Button();
+            tabPage3 = new TabPage();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            plotView1 = new OxyPlot.WindowsForms.PlotView();
             TriggerTimer = new System.Windows.Forms.Timer(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -60,12 +63,15 @@
             tabPage2.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tabPage3.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -316,6 +322,48 @@
             btn_update.UseVisualStyleBackColor = true;
             btn_update.Click += btn_update_Click;
             // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(tableLayoutPanel3);
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1516, 898);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Graph";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 3;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Controls.Add(plotView1, 1, 1);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 3;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel3.Size = new Size(1510, 892);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // plotView1
+            // 
+            plotView1.Dock = DockStyle.Fill;
+            plotView1.Location = new Point(13, 13);
+            plotView1.Name = "plotView1";
+            plotView1.PanCursor = Cursors.Hand;
+            plotView1.Size = new Size(1484, 866);
+            plotView1.TabIndex = 0;
+            plotView1.Text = "plotView1";
+            plotView1.ZoomHorizontalCursor = Cursors.SizeWE;
+            plotView1.ZoomRectangleCursor = Cursors.SizeNWSE;
+            plotView1.ZoomVerticalCursor = Cursors.SizeNS;
+            // 
             // TriggerTimer
             // 
             TriggerTimer.Interval = 1000;
@@ -337,6 +385,8 @@
             tabPage2.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tabPage3.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -365,5 +415,8 @@
         private DataGridViewTextBoxColumn CreateDate;
         private DataGridViewTextBoxColumn DownloadedDate;
         private DataGridViewTextBoxColumn Note;
+        private TabPage tabPage3;
+        private TableLayoutPanel tableLayoutPanel3;
+        private OxyPlot.WindowsForms.PlotView plotView1;
     }
 }
