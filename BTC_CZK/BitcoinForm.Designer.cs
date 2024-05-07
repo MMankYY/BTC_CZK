@@ -54,6 +54,10 @@
             tabPage3 = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             plotView1 = new OxyPlot.WindowsForms.PlotView();
+            tabPage4 = new TabPage();
+            button2 = new Button();
+            button1 = new Button();
+            dataGridView3 = new DataGridView();
             TriggerTimer = new System.Windows.Forms.Timer(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -65,6 +69,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             tabPage3.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -72,6 +78,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -363,6 +370,50 @@
             plotView1.ZoomRectangleCursor = Cursors.SizeNWSE;
             plotView1.ZoomVerticalCursor = Cursors.SizeNS;
             // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(button2);
+            tabPage4.Controls.Add(button1);
+            tabPage4.Controls.Add(dataGridView3);
+            tabPage4.Location = new Point(4, 34);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(1516, 898);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "tabPage4";
+            tabPage4.UseVisualStyleBackColor = true;
+            tabPage4.Enter += tabPage4_Enter;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(892, 743);
+            button2.Name = "button2";
+            button2.Size = new Size(190, 41);
+            button2.TabIndex = 2;
+            button2.Text = "Reload";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(303, 743);
+            button1.Name = "button1";
+            button1.Size = new Size(190, 41);
+            button1.TabIndex = 1;
+            button1.Text = "Submit";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Dock = DockStyle.Top;
+            dataGridView3.Location = new Point(3, 3);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersWidth = 62;
+            dataGridView3.Size = new Size(1510, 637);
+            dataGridView3.TabIndex = 0;
+            // 
             // TriggerTimer
             // 
             TriggerTimer.Interval = 1000;
@@ -386,6 +437,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             tabPage3.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
         }
 
@@ -417,5 +470,9 @@
         private TabPage tabPage3;
         private TableLayoutPanel tableLayoutPanel3;
         private OxyPlot.WindowsForms.PlotView plotView1;
+        private TabPage tabPage4;
+        private DataGridView dataGridView3;
+        private Button button2;
+        private Button button1;
     }
 }

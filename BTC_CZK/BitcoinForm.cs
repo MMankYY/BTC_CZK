@@ -4,6 +4,9 @@ using BussinesLogic.Objects;
 using OxyPlot.Series;
 using OxyPlot;
 using OxyPlot.Axes;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Globalization;
 
 namespace BTC_CZK
 {
@@ -15,6 +18,7 @@ namespace BTC_CZK
         List<BitcoinRate> btcRates = new List<BitcoinRate>();
         List<BitcoinRate> modifiedRates = new List<BitcoinRate>();
 
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
         public BitcoinForm()
         {
@@ -41,7 +45,7 @@ namespace BTC_CZK
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private async void btn_save_Click(object sender, EventArgs e)
@@ -184,6 +188,49 @@ namespace BTC_CZK
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        private void GatValues()
+        {
+            try
+            {
+                string connectionString = "Server=MANKY;Database=Bitcoin;User Id=BitcoinUser;Password=BitcoinUser;Trust Server Certificate=True";
+                string selectCommand = "SELECT [ID],[BTC_EUR],[CZK_EUR],[BTC_CZK],[CreateDate],[DownloadedDate],[Note] FROM [Bitcoin].[dbo].[BitcoinRate]";
+
+                // Create a new data adapter based on the specified query.
+                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
+
+                // Create a command builder to generate SQL update, insert, and
+                // delete commands based on selectCommand.
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+
+                // Populate a new data table and bind it to the BindingSource.
+                DataTable table = new DataTable
+                {
+                    Locale = CultureInfo.InvariantCulture
+                };
+                dataAdapter.Fill(table);
+                dataGridView3.DataSource = table;
+
+                // Resize the DataGridView columns to fit the newly loaded content.
+                dataGridView1.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataAdapter.Update((DataTable)dataGridView3.DataSource);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GatValues();
         }
     }
 }
